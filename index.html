@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RunID | زیرساخت پیچیده، اجرای یک‌کلیکی</title>
+    <title>RunID | زیرساخت هوشمند و ابری</title>
+    <!-- استفاده از فونت استاندارد و زیبای وزیرمتن -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
         }
 
         body {
@@ -19,19 +23,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
         }
 
-        /* پس‌زمینه متحرک مدرن (Animated Glow Orbs) */
+        /* پس‌زمینه متحرک روان */
         .bg-glow {
             position: absolute;
-            width: 600px;
-            height: 600px;
+            width: 500px;
+            height: 500px;
             border-radius: 50%;
             filter: blur(140px);
-            opacity: 0.45;
-            animation: float 12s infinite alternate ease-in-out;
+            opacity: 0.35;
+            animation: float 14s infinite alternate ease-in-out;
             z-index: 0;
         }
 
@@ -42,45 +46,45 @@
         }
 
         .glow-2 {
-            background: radial-gradient(circle, #6366f1, #4f46e5);
+            background: radial-gradient(circle, #818cf8, #4f46e5);
             bottom: -10%;
             left: -10%;
-            animation-delay: -6s;
+            animation-delay: -7s;
         }
 
         @keyframes float {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(50px, 40px) scale(1.15); }
+            100% { transform: translate(40px, 30px) scale(1.1); }
         }
 
-        /* کارت اصلی Glassmorphic */
+        /* کارت اصلی */
         .container {
             position: relative;
             z-index: 10;
-            max-width: 650px;
+            max-width: 600px;
             width: 90%;
-            background: rgba(15, 23, 42, 0.65);
+            background: rgba(15, 23, 42, 0.7);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 24px;
-            padding: 3rem 2.5rem;
+            padding: 3rem 2rem;
             text-align: center;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
         }
 
         .badge {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             background: rgba(56, 189, 248, 0.1);
             border: 1px solid rgba(56, 189, 248, 0.25);
             color: #38bdf8;
-            padding: 0.4rem 1rem;
+            padding: 0.4rem 1.2rem;
             border-radius: 50px;
             font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .dot {
@@ -92,23 +96,24 @@
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 800;
-            line-height: 1.25;
-            margin-bottom: 1.2rem;
-            background: linear-gradient(135deg, #ffffff 30%, #94a3b8);
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 40%, #94a3b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         p {
             color: #94a3b8;
-            font-size: 1.05rem;
-            line-height: 1.7;
-            margin-bottom: 2.2rem;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            font-weight: 400;
         }
 
-        /* دکمه اکشن مدرن */
+        /* دکمه اکشن */
         .btn-lab {
             display: inline-flex;
             align-items: center;
@@ -117,22 +122,21 @@
             background: linear-gradient(135deg, #0284c7, #4f46e5);
             color: #ffffff;
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
-            padding: 1rem 2rem;
+            padding: 0.9rem 2rem;
             border-radius: 14px;
             box-shadow: 0 10px 25px rgba(2, 132, 199, 0.35);
             transition: all 0.3s ease;
         }
 
         .btn-lab:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(2, 132, 199, 0.5);
-            background: linear-gradient(135deg, #0369a1, #4338ca);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(2, 132, 199, 0.5);
         }
 
         .arrow {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             transition: transform 0.2s ease;
         }
 
@@ -149,21 +153,19 @@
 </head>
 <body>
 
-    <!-- افکت‌های متحرک پس‌زمینه -->
     <div class="bg-glow glow-1"></div>
     <div class="bg-glow glow-2"></div>
 
-    <!-- محتوای اصلی -->
     <main class="container">
         <div class="badge">
             <span class="dot"></span>
             پلتفرم هوشمند راه‌اندازی سرویس
         </div>
 
-        <h1>پیچیدگی‌ها با ما،<br>اجرا با یک کلیک از شما!</h1>
+        <h1>اتصال کدهای ابری، هوش مصنوعی و سرویس‌ها تنها با یک کلیک</h1>
 
         <p>
-            <strong>RunID</strong> پل ارتباطی بین شما و دنیای هاستینگ، کلودفلر، وردپرس و درگاه‌های پرداخت است. بدون نیاز به دانش فنی، کانفیگ‌های سخت را به ساده‌ترین شکل ممکن دپلوی کنید.
+            با <strong>RunID</strong> بدون درگیری با تنظیمات پیچیده، سرویس‌های ابری مثل کلودفلر، مدل‌های هوش مصنوعی، هاست و وردپرس را به ساده‌ترین شکل ممکن دپلوی و مدیریت کنید.
         </p>
 
         <a href="https://lab.runid.ir" class="btn-lab">
